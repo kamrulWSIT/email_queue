@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendMailJob;
 use App\Mail\UserReportMail;
 use App\Mail\WelcomeMail;
 use App\Models\User;
@@ -51,11 +52,11 @@ class RegisteredUserController extends Controller
 
         // Send the welcome email
         $message = 'this message test for dynamic test';
-        Mail::to($user->email)->send(new WelcomeMail($message));
-        Mail::to('superadmin@gmail.com')->send(new UserReportMail());
+
 
         // Mail::to($user->email)->queue(new WelcomeMail($message));
 
+        dispatch(new SendMailJob($user->email, $message));
 
 
         return redirect(RouteServiceProvider::HOME);
