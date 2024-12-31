@@ -11,6 +11,11 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+
+                <div>
+                    <a href="{{ route('send.otp') }}">Send OTP</a>
+                </div>
+
             </div>
         </div>
     </div>
