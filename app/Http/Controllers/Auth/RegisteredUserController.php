@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
 
         // Mail::to($user->email)->queue(new WelcomeMail($message));
 
-        for ($i=1; $i <= 10; $i++) {
+        for ($i=1; $i <= 4; $i++) {
             dispatch(new SendMailJob($user->email, $message));
         }
 
@@ -68,5 +68,5 @@ class RegisteredUserController extends Controller
 
 
 
-    
+
 }

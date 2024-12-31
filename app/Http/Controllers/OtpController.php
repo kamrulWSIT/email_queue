@@ -18,4 +18,6 @@ class OtpController extends Controller
         // Mail::to('userotp@gmail.com')->send(new SendOtpMail($otp));
     }
 
+    
+
 }

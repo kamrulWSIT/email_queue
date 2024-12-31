@@ -35,4 +35,29 @@ class SendMailJob implements ShouldQueue
         Mail::to($this->email)->send(new WelcomeMail($this->message));
         Mail::to('superadmin@gmail.com')->send(new UserReportMail());
     }
+
+
+    public function failed($exception)
+    {
+
+        Mail::send([], [], function ($message) {
+            // $message->from('john@johndoe.com', 'John Doe');
+            // $message->sender('john@johndoe.com', 'John Doe');
+
+            $message->to('john@johndoe.com', 'John Doe')
+
+            // $message->cc('john@johndoe.com', 'John Doe');
+            // $message->bcc('john@johndoe.com', 'John Doe');
+
+            // $message->replyTo('john@johndoe.com', 'John Doe');
+
+            ->subject('Money Tranfer Failed')
+            ->html('Hi, Your money transfer failed');
+
+            // $message->priority(3);
+
+            // $message->attach('pathToFile');
+        });
+
+    }
 }
